@@ -1,6 +1,15 @@
 # SITL + Ardupilot + Gazebo + ROS Camera plugin
 SITL + ArduPilot + Gazebo + ROS Camera Plugin (Software In Loop Simulation Interfaces, Models)
 
+## Description :
+
+Finally an all in one tutorial for setting up your virtual drone using Ardupilot (Arducopter) + SITL in an complete 3d virtual enviroment provided by Gazebo.
+
+At last but not least (Actually the most complicated to find examples of...) added the camera plugin from ROS to publish the images so you can take them outside Gazebo and do something with them...
+
+Following are the requirements, setup steps and finally how to of each part.. 
+
+
 ## Requirements :
 Ubuntu (18.04 LTS) with full 3D graphics.
 
@@ -9,6 +18,7 @@ Gazebo version 8.x or greater (Recomended 9.6)
 ROS melodic
 SITL Ardupilot
 ROS melodic (Required to work with Gazebo)
+Ardupilot gazebo plugin (Original khancyr version)
 
 
 ## ROS melodic installation :
