@@ -1,6 +1,11 @@
 # SITL + Ardupilot + Gazebo + ROS Camera plugin
 SITL + ArduPilot + Gazebo + ROS Camera Plugin (Software In Loop Simulation Interfaces, Models)
 
+
+## Incomplete Warning :
+
+This tutorial is not yet complete.... please be patient and wait...
+
 ## Description :
 
 Finally an all in one tutorial for setting up your virtual drone using Ardupilot (Arducopter) + SITL in an complete 3d virtual enviroment provided by Gazebo.
@@ -239,3 +244,4 @@ New versions of MAVProxy and pymavlink are released quite regularly. If you are 
 ````
 roslaunch apm.launch
 ````
+
