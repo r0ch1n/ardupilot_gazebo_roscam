@@ -16,7 +16,7 @@ Following are the requirements, setup steps and finally how to of each part..
 
 
 ## Requirements :
-* Ubuntu (18.04 LTS) with full 3D graphics.
+* Ubuntu (18.04 LTS) Full 3D graphics hight recommended.
 * Gazebo version 8.x or greater (Recomended 9.6)
 * ROS melodic (Required to work with Gazebo)
 * MAVROS
