@@ -24,7 +24,7 @@ Following are the requirements, setup steps and finally how to of each part..
 ## Environment setup and configuration :
 * STEP 1 - SITL Ardupilot
 * STEP 2 - Ardupilot gazebo plugin (Original khancyr version)
-* STEP 3 - 
+* STEP 3 - Gazebo ROS plugin (roscam)
 * STEP 4 - Connect ArduPilot to ROS
 
 ## Gazebo 9 :
@@ -228,6 +228,51 @@ gazebo --verbose worlds/iris_arducopter_runway.world
 
 You should see a gazebo world with a small quadcopter right at the center
 
+
+## SETP 3 - Gazebo ROS plugin (roscam) :
+
+
+
+### Clone Gazebo roscan repository
+
+````
+# Source ROS
+
+source /opt/ros/melodic/setup.bash
+
+# Add Custom models and plugin to Gazebo
+
+export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models:$GAZEBO_MODEL_PATH
+
+export GAZEBO_MODEL_PATH=~/ardupilot_gazebo_roscam/src/ardupilot_gazebo/models:$GAZEBO_MODEL_PATH
+
+export GAZEBO_PLUGIN_PATH=/usr/lib/x86_64-linux-gnu/gazebo-9/plugins:$GAZEBO_PLUGIN_PATH 
+
+export GAZEBO_PLUGIN_PATH=/opt/ros/melodic/lib:$GAZEBO_PLUGIN_PATH
+
+# Clone custom Gazebo ROS package
+
+cd ~/
+
+git clone https://github.com/r0ch1n/ardupilot_gazebo_roscam
+
+cd ardupilot_gazebo_roscam
+
+catkin init
+
+cd src
+
+catkin_create_pkg ardupilot_gazebo
+
+cd ..
+
+catkin build
+
+source ~/ardupilot_gazebo_roscam/devel/setup.bash
+
+roslaunch ardupilot_gazebo iris_with_roscam.launch
+
+````
 
 
 ## SETP 4 - Connect ArduPilot to ROS using MAVROS :
