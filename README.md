@@ -1,14 +1,9 @@
 # SITL + Ardupilot + Gazebo + ROS Camera plugin Tutorial
 SITL + ArduPilot + Gazebo + ROS Camera Plugin (Software In Loop Simulation Interfaces, Models)
 
-
-## Incomplete Warning :
-
-This tutorial is not yet complete.... please be patient and wait...
-
 ## Description :
 
-Finally an all in one tutorial for setting up your virtual drone using Ardupilot (Arducopter) + SITL in an complete 3d virtual enviroment provided by Gazebo.
+Finally an all in one tutorial for setting up your virtual drone using Ardupilot (Arducopter) + SITL in an complete 3D virtual enviroment provided by Gazebo.
 
 At last but not least (Actually the most complicated to find examples of...) added the camera plugin from ROS to publish the images so you can take them outside Gazebo and do something with them...
 
