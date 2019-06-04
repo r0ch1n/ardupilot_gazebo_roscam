@@ -290,12 +290,40 @@ roslaunch apm.launch
 
 ## Run it all
 
-Open one Terminal and launch SITL Ardupilot
+
+Open one Terminal and launch ROS integrated Gazebo world
+
+Make sure you have all the right environment, if you are not sure run the following first
+````
+
+source /opt/ros/melodic/setup.bash
+
+export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models:$GAZEBO_MODEL_PATH
+export GAZEBO_MODEL_PATH=~/ardupilot_gazebo_roscam/src/ardupilot_gazebo/models:$GAZEBO_MODEL_PATH
+export GAZEBO_PLUGIN_PATH=/usr/lib/x86_64-linux-gnu/gazebo-9/plugins:$GAZEBO_PLUGIN_PATH 
+export GAZEBO_PLUGIN_PATH=/opt/ros/melodic/lib:$GAZEBO_PLUGIN_PATH
+````
+
+Launch ROS integrated Gazebo
 
 ````
-sim_vehicle.py -v ArduCopter -f gazebo-iris --map --console
+source ~/mycode/ardupilot_gazebo_roscam/devel/setup.bash
+
+roslaunch ardupilot_gazebo iris_with_roscam.launch
 ````
 
-Open a second Terminal and launch Gazebo running ardupilot_gazebo plugin
+Open a second Terminal and launch SITL Ardupilot
+
 ````
-gazebo --verbose worlds/iris_arducopter_runway.world
+cd ~/ardupilot/ArduCopter
+
+sim_vehicle.py -f gazebo-iris --console --map
+````
+
+Open a third Terminal and RTL
+
+````
+rtl
+````
+
+select 
