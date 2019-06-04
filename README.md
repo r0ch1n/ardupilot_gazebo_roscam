@@ -231,9 +231,9 @@ You should see a gazebo world with a small quadcopter right at the center
 
 ## SETP 3 - Gazebo ROS plugin (roscam) :
 
+This contains the ROS integrated custom models and .world files for Gazebo
 
-
-### Clone Gazebo roscan repository
+### Clone Gazebo roscam integrated mdodel repository
 
 ````
 # Source ROS
@@ -280,8 +280,6 @@ roslaunch ardupilot_gazebo iris_with_roscam.launch
 Connect to Ardupilot from ROS (Ardupilot <–> MAVLink <–> ROS )  Original information taken from here http://ardupilot.org/dev/docs/ros-sitl.html
 Note - Gazebo is not included in MAVROS so you cannot connect or access any of the Gazebo's Environments. Including the Cameras feed. We use a different approach to acces this information in STEP X.
 
-
-
 ### Run
 
 New versions of MAVProxy and pymavlink are released quite regularly. If you are a regular SITL user you should update every now and again using this command
@@ -290,3 +288,14 @@ New versions of MAVProxy and pymavlink are released quite regularly. If you are 
 roslaunch apm.launch
 ````
 
+## Run it all
+
+Open one Terminal and launch SITL Ardupilot
+
+````
+sim_vehicle.py -v ArduCopter -f gazebo-iris --map --console
+````
+
+Open a second Terminal and launch Gazebo running ardupilot_gazebo plugin
+````
+gazebo --verbose worlds/iris_arducopter_runway.world
