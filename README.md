@@ -21,12 +21,6 @@ Following are the requirements, setup steps and finally how to of each part..
 * ROS melodic (Required to work with Gazebo)
 * MAVROS
 
-## Environment setup and configuration :
-* STEP 1 - SITL Ardupilot
-* STEP 2 - Ardupilot gazebo plugin (Original khancyr version)
-* STEP 3 - Gazebo ROS plugin (roscam)
-* STEP 4 - Connect ArduPilot to ROS
-
 ## Gazebo 9 :
 
 ### Setup your computer to accept software from packages.osrfoundation.org.
@@ -111,6 +105,15 @@ sudo apt-get install ros-kinetic-rqt ros-kinetic-rqt-common-plugins ros-kinetic-
 ````
 sudo apt-get install python-catkin-tools
 ````
+
+Now that we have everything correctly installed we can begin our system configuration
+
+## Environment setup and configuration :
+* STEP 1 - SITL Ardupilot
+* STEP 2 - Ardupilot gazebo plugin (Original khancyr version)
+* STEP 3 - Gazebo ROS plugin (roscam)
+* STEP 4 - Connect ArduPilot to ROS
+
 
 ## SETP 1 - SITL Ardupilot installation :
 
@@ -240,16 +243,6 @@ This contains the ROS integrated custom models and .world files for Gazebo
 
 source /opt/ros/melodic/setup.bash
 
-# Add Custom models and plugin to Gazebo
-
-export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models:$GAZEBO_MODEL_PATH
-
-export GAZEBO_MODEL_PATH=~/ardupilot_gazebo_roscam/src/ardupilot_gazebo/models:$GAZEBO_MODEL_PATH
-
-export GAZEBO_PLUGIN_PATH=/usr/lib/x86_64-linux-gnu/gazebo-9/plugins:$GAZEBO_PLUGIN_PATH 
-
-export GAZEBO_PLUGIN_PATH=/opt/ros/melodic/lib:$GAZEBO_PLUGIN_PATH
-
 # Clone custom Gazebo ROS package
 
 cd ~/
@@ -268,33 +261,68 @@ cd ..
 
 catkin build
 
+# Add Custom models and plugin to Gazebo
+export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models:$GAZEBO_MODEL_PATH
+export GAZEBO_MODEL_PATH=~/ardupilot_gazebo_roscam/src/ardupilot_gazebo/models:$GAZEBO_MODEL_PATH
+export GAZEBO_PLUGIN_PATH=/usr/lib/x86_64-linux-gnu/gazebo-9/plugins:$GAZEBO_PLUGIN_PATH 
+export GAZEBO_PLUGIN_PATH=/opt/ros/melodic/lib:$GAZEBO_PLUGIN_PATH
+
+# Test installation
+
 source ~/ardupilot_gazebo_roscam/devel/setup.bash
 
 roslaunch ardupilot_gazebo iris_with_roscam.launch
 
 ````
 
-
 ## SETP 4 - Connect ArduPilot to ROS using MAVROS :
 
 Connect to Ardupilot from ROS (Ardupilot <–> MAVLink <–> ROS )  Original information taken from here http://ardupilot.org/dev/docs/ros-sitl.html
-Note - Gazebo is not included in MAVROS so you cannot connect or access any of the Gazebo's Environments. Including the Cameras feed. We use a different approach to acces this information in STEP X.
+Note - Gazebo is not included in MAVROS so you cannot connect or access any of the Gazebo's Environments.
 
-### Run
+### Setup MAVROS
 
 New versions of MAVProxy and pymavlink are released quite regularly. If you are a regular SITL user you should update every now and again using this command
 
 ````
+cd ~/
+
+mkdir -p ardupilot_ws/src
+
+cd ardupilot_ws
+
+catkin init
+
+cd src
+
+mkdir launch
+
+cd launch
+
+roscp mavros apm.launch apm.launch
+
+sudo gedit apm.launch
+
+To connect to SITL we just need to modify the first line to <arg name="fcu_url" default="udp://127.0.0.1:14551@14555" />. save you file and launch it with
+````
+
+### Test
+
+````
+cd ~/ardupilot_ws/src/launch
+
 roslaunch apm.launch
 ````
 
 ## Run it all
 
 
-Open one Terminal and launch ROS integrated Gazebo world
+### Launch Gazebo
 
-Make sure you have all the right environment, if you are not sure run the following first
+Open one Terminal and launch ROS integrated Gazebo
+
 ````
+#Make sure you have all the right environment, if you are not sure run the following first
 
 source /opt/ros/melodic/setup.bash
 
@@ -302,15 +330,15 @@ export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models:$GAZEBO_MODEL_PATH
 export GAZEBO_MODEL_PATH=~/ardupilot_gazebo_roscam/src/ardupilot_gazebo/models:$GAZEBO_MODEL_PATH
 export GAZEBO_PLUGIN_PATH=/usr/lib/x86_64-linux-gnu/gazebo-9/plugins:$GAZEBO_PLUGIN_PATH 
 export GAZEBO_PLUGIN_PATH=/opt/ros/melodic/lib:$GAZEBO_PLUGIN_PATH
-````
 
-Launch ROS integrated Gazebo
+#Launch ROS integrated Gazebo
 
-````
 source ~/mycode/ardupilot_gazebo_roscam/devel/setup.bash
 
 roslaunch ardupilot_gazebo iris_with_roscam.launch
 ````
+
+### Launch SITL Ardupilot
 
 Open a second Terminal and launch SITL Ardupilot
 
@@ -320,10 +348,24 @@ cd ~/ardupilot/ArduCopter
 sim_vehicle.py -f gazebo-iris --console --map
 ````
 
+### Subscribe to the virtual roscam feed
+
 Open a third Terminal and RTL
 
 ````
-rtl
+rqt
 ````
 
-select 
+Select Plugins -> Visualization -> Image View
+
+Then choose /roscam/cam/image_raw
+
+You should see the live feed from inside gazebo
+
+
+## Final notes and comments
+
+You can use any GCS Adrupilot software to control the UAV.
+
+I hope you can use this basic template for your own projects
+
