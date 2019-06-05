@@ -338,7 +338,7 @@ export GAZEBO_PLUGIN_PATH=/opt/ros/melodic/lib:$GAZEBO_PLUGIN_PATH
 
 #Launch ROS integrated Gazebo
 
-source ~/mycode/ardupilot_gazebo_roscam/devel/setup.bash
+source ~/ardupilot_gazebo_roscam/devel/setup.bash
 
 roslaunch ardupilot_gazebo iris_with_roscam.launch
 ````
