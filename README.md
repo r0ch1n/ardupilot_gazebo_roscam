@@ -40,6 +40,16 @@ sudo apt-get install libgazebo9-dev
 gazebo --verbose
 ````
 
+NOTE: When running in VM mode this might be required for gazebo to run
+````
+export SVGA_VGPU10=0
+````
+
+To make the change permanent use:
+````
+$ echo "export SVGA_VGPU10=0" >> ~/.profile
+````
+
 ## ROS melodic installation :
 
 Install ROS with sudo apt install ros-melodic-desktop-full (follow instruction here http://wiki.ros.org/melodic/Installation/Ubuntu).
