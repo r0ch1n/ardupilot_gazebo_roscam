@@ -35,6 +35,11 @@ sudo apt-get install gazebo9
 sudo apt-get install libgazebo9-dev
 ````
 
+### Test Gazebo
+````
+gazebo --verbose
+````
+
 ## ROS melodic installation :
 
 Install ROS with sudo apt install ros-melodic-desktop-full (follow instruction here http://wiki.ros.org/melodic/Installation/Ubuntu).
@@ -45,11 +50,6 @@ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
 
 sudo apt update
-````
-
-### Test Gazebo
-````
-gazebo --verbose
 ````
 
 ### Install ROS melodic
