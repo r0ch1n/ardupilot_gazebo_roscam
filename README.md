@@ -80,7 +80,7 @@ MAVLink extendable communication node for ROS with proxy for Ground Control Stat
 
 ### Configure your Ubuntu repositories
 ````
-sudo apt-get install ros-kinetic-mavros ros-kinetic-mavros-extras
+sudo apt-get install ros-melodic-mavros ros-melodic-mavros-extras
 
 cd ~/
 
@@ -93,7 +93,7 @@ chmod a+x install_geographiclib_datasets.sh
 
 ### For ease of use on a desktop computer, please also install RQT
 ````
-sudo apt-get install ros-kinetic-rqt ros-kinetic-rqt-common-plugins ros-kinetic-rqt-robot-plugins
+sudo apt-get install ros-melodic-rqt ros-melodic-rqt-common-plugins ros-melodic-rqt-robot-plugins
 ````
 
 ### Install catkin tools
